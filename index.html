@@ -6,18 +6,363 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link href="/GitHub/Theme.css" rel="stylesheet" />
-    <link href="/scripts/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+html, body {
+  color: #24292e;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI Emoji", "Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  padding: 10px !important;
+  margin: 0;
+  scrollbar-track-color: Whitesmoke;
+  scrollbar-arrow-color: silver;
+  scrollbar-base-color: #ddd;
+  scrollbar-face-color: #ddd;
+  -ms-overflow-style: -ms-autohiding-scrollbar !important;
+}
 
-    <script src="/scripts/jquery.min.js"></script>
-    <link href="/highlightjs/styles/github-mm.css" rel="stylesheet" />
-    <script src="/scripts/highlightjs/highlight.pack.js"></script>
-    <script src="/scripts/preview.js" id="PreviewScript"></script>
+strong, b {
+  font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6, .byline, .content-title {
+  margin-top: 1em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0em;
+  color: #CC9900;
+ 
+}
+
+h1 {
+    font-size: 2em;
+    line-height: 1.2;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eaecef;
+    margin-bottom: 16px;
+    
+}
+
+h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+}
+
+h3 {
+  display: block;
+  font-size: 1.3em;
+}
+
+h4 {
+  font-size: 1.05em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: steelblue;
+}
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+p {
+  margin: 0.5rem 0 1rem;
+}
+
+
+code {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  color: #333;
+  background: #f2f2f2;
+  font-size: 0.85em;
+}
+
+pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-weight: normal;
+  font-size: 85%;
+  line-height: 1.45;
+  margin: 7px 0;
+  padding: 0;
+  max-width: 98%;
+  border: none;
+  overflow: auto;
+  border-radius: 3px;
+  white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
+  background: #f2f2f2f2;
+}
+
+  pre > code {
+    white-space: pre;
+    padding: 0.8em !important;
+    display: block;
+    background: transparent;
+    font-weight: normal;
+  }
+
+table {
+  width: 100%;
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 15px 0;
+  border-color: gray;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 6px 13px;
+  display: table-cell;
+  vertical-align: top;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody > tr:nth-child(even) {
+  background: #eee;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul > li > ul > li > ul > li {
+  list-style: disc;
+}
+
+ul > li > ul > li {
+  list-style: circle;
+}
+
+.task-list-item {
+  list-style: none;
+  margin-left: -2em;
+}
+/* definition lists can be toggled*/
+dt {
+  font-size: 1.08em;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-top: 0.5em;
+  cursor: pointer;
+}
+
+dd {
+  margin: 0;
+  padding: 0 0 0.2em 1em;
+  display: none;
+}
+
+blockquote {
+  color: #6a737d;
+  font-size: 1em;
+  border-left: 4px #ddd solid;
+  padding: 15px 20px;
+  margin: 14px 2px;
+}
+
+  blockquote *:first-child {
+    margin-top: 0;
+  }
+
+  blockquote *:last-child {
+    margin-bottom: 0;
+  }
+
+hr {
+  margin: 12px 0;
+}
+
+.figure .caption, figure figcaption {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: 0;
+}
+/* hidden display, but still part of document flow */
+.hidden {
+  display: none;
+}
+
+.hidden-nowidth {
+  width: 0;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.line-highlight {
+  background: #e9f5ff !important;
+}
+
+p.line-highlight, h1.line-highlight, h2.line-highlight, h3.line-highlight, h4.line-highlight {
+  border-radius: 4px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#MainContent {
+    margin: 0 auto;
+    padding: 10px 40px;
+    max-width: 980px;
+    /*border: 1px solid #eee;*/
+}
+
+/ /* DocFx Styles*/
+.CAUTION, .IMPORTANT, .INFO, .TIP, .NOTE, .WARNING {
+  padding: 0.1px 20px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+.CAUTION > h5, .IMPORTANT > h5, .INFO > h5, .TIP > h5, .NOTE > h5, .WARNING > h5 {
+  color: inherit;
+}
+
+.CAUTION, .IMPORTANT {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.WARNING {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.INFO, .TIP, .NOTE {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.NOTE h5:before, .TIP h5:before {
+  content: "\f05a";
+  font-family: FontAwesome;
+  padding-right: 6px;
+}
+
+.WARNING h5:before, .CAUTION h5:before {
+  content: "\f071";
+  font-family: FontAwesome;
+  padding-right: 6px;
+}
+
+.IMPORTANT h5:before {
+  content: "\f06a";
+  font-family: FontAwesome;
+  padding-right: 6px;
+}
+
+xref {
+  display: block;
+}
+
+
+@media(min-width: 1080px) {
+  html, body {
+  }
+}
+
+@media print {
+  pre {
+    white-space: pre-wrap;
+    word-break: normal;
+    word-wrap: normal;
+  }
+
+    pre > code {
+      white-space: pre-wrap;
+      padding: 1em !important;
+    }
+}
+</style>
 
 </head>
 <body style="overflow:auto;"/>
     <div id="MainContent">
-        <h1>Was geht ab </h1>
+        <h1>Vorgehensweise</h1>
+<ul>
+<li>Mit Frau Melzer telefonieren</li>
+<li>Nach Energieberatern / Heizungsbausern suchen</li>
+</ul>
+<h1>1. Verbraucherzentrale</h1>
+<ul>
+<li>Kontaktformular genutzt, keine Antwort</li>
+<li>https://www.verbraucherzentrale-sachsen.de/beratungsstellen/leipzig-technisches-rathaus-energieberatung/beratungsangebote/18403</li>
+</ul>
+<h1>2. Energieberater</h1>
+<p><strong>Übersicht was ein Energieberater bzw. iSFP macht</strong></p>
+<p>Man sollte sich einen <strong>individuellen Sanierungsfahrplans (iSFP)</strong> ausstellen lassen<br />
+Der iSFP ist ein neu entwickeltes Beratungsinstrument und präsentiert Ihnen die empfohlenen Sanierungsmaßnahmen übersichtlich und mit besonderer Anschaulichkeit.<br />
+Design und Struktur des iSFP sind dabei standardisiert. Zur Veranschaulichung wird überdies das Mittel der farblichen Visualisierung gezielt eingesetzt</p>
+<p>https://www.bafa.de/DE/Energie/Energieberatung/Energieberatung_Wohngebaeude/energieberatung_wohngebaeude_node.html<br />
+https://www.leipzig.ihk.de/foerdermittelkompass/energieberatung-fuer-wohngebaeude/<br />
+https://www.verbraucherzentrale-sachsen.de/wissen/energie/energetische-sanierung/individueller-sanierungsfahrplan-isfp-modernisieren-mit-koepfchen-59828<br />
+(Link zur energieexperten Liste)</p>
+<p><strong>Energieberater (Firmen)</strong><br />
+https://www.akib-leipzig.de/newpage8<br />
+(grösser, gute google-Bewertimg)<br />
+https://green-minds.eu/leistungen
+(Baubegleitung, länger Erfanrung)</p>
+<p><strong>Energieberater (Einzelpersonen)</strong><br />
+https://www.energieberatung-wisatzke.de/Leistungen/Energieberatung<br />
+http://rpp-leipzig.de/energie.html<br />
+https://www.energie-ingenieur-leipzig.de/<br />
+(Baubegleitung)</p>
+<p><strong>Berater mit Netzwerkpartnern Verbraucherzentrale Sachsen</strong></p>
+<p>http://www.ieb-klooz.de/<br />
+https://www.ib-morgenstern.de/leistungen/<br />
+https://www.energie-ingenieur-leipzig.de/energieberatung-fuer-wohngebaeude/<br />
+https://nichtnurfassade.com/leistungen/<br />
+(jung, aber Altbau)<br />
+https://bowark.de/<br />
+(1 google bewertiung<br />
+https://www.sps-leipzig.de/index.html
+(Sanierungsbeauftragten der Stadt Leipzig, Dipl.-Ing. Thorsten Spohler)
+http://www.ieb-klooz.de/ueber-uns.html
+(Hardenbergstraße 18)
+http://www.architektur-energiekonzepte.de/37-0-Startseite.html
+https://energieberatung-brauer.de/projekte-0<br />
+http://energieberaterverband.de/energieberater.htm<br />
+https://www.eigenenergieversorger.de/Energieberatung-Gebaeude/</p>
+<h1>4 . Portal https://www.energie-experten.org/</h1>
+<ul>
+<li>Nummer muss noch korrekt angegeben werden</li>
+</ul>
+<h1>3. Portal  https://www.daa.net/de</h1>
+<p>Anfrage gestellt am 27.09.2022, gleich Rückruf bekommen</p>
+<h3>Die Klimafreunde</h3>
+<p>www.dieklimafreunde.de<br />
+Bewertung bei google <strong>4,5 von 5</strong></p>
+<h3>1GUS-Solar</h3>
+<p>https://www.igus-solar.de/</p>
+<h3>Daheim</h3>
+<p>https://daheim-solar.de/<br />
+Bewertung bei google <strong>3,6 von 5</strong></p>
 
         
     </div>
